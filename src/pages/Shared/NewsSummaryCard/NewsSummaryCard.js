@@ -40,7 +40,7 @@ const NewsSummaryCard = ({ news }) => {
                     }
                 </Card.Text>
             </Card.Body>
-            <Card.Footer className="text-muted">
+            <Card.Footer>
                 <div className='d-flex justify-content-between'>
                     <div>2 days ago</div>
                     <div><FaEye></FaEye> Total views: {total_view}</div>
