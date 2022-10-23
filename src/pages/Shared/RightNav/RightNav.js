@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FcGoogle } from "react-icons/fc";
 import { FaWhatsapp } from "react-icons/fa";
-import { FiGithub , FiFacebook, FiTwitch, FiTwitter, FiYoutube } from "react-icons/fi";
+import { FiGithub, FiFacebook, FiTwitch, FiTwitter, FiYoutube } from "react-icons/fi";
 import ListGroup from 'react-bootstrap/ListGroup';
 import BrandCarousel from '../Carousel/BrandCarousel';
+import { AuthContext } from '../../../contexts/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const RightNav = () => {
+    const { providerLogin } = useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    };
     return (
         <div>
             <ButtonGroup vertical>
-                <Button className='mb-2' variant='outline-primary'><FcGoogle /> Login with Google</Button>
+                <Button onClick={handleGoogleSignIn} className='mb-2' variant='outline-primary'><FcGoogle /> Login with Google</Button>
                 <Button variant='outline-dark'><FiGithub /> Login with Github</Button>
             </ButtonGroup>
             <div className='mt-4'>
@@ -22,7 +38,7 @@ const RightNav = () => {
                     <ListGroup.Item className='mb-2'><FaWhatsapp></FaWhatsapp> WhatsApp</ListGroup.Item>
                     <ListGroup.Item className='mb-2'><FiYoutube></FiYoutube> Youtube</ListGroup.Item>
                     <ListGroup.Item className='mb-2'><FiTwitch></FiTwitch> Twitch</ListGroup.Item>
-                </ListGroup> 
+                </ListGroup>
             </div>
             <div>
                 <BrandCarousel></BrandCarousel>
