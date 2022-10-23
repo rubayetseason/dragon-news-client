@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     };
     const signIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
-    }
+    };
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
