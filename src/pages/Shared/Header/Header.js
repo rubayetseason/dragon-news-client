@@ -28,7 +28,7 @@ const Header = () => {
                             {
                                 user?.uid ?
                                     <>
-                                        <span>{user?.displayName}</span>
+                                        <span>{user?.email}</span>
                                         <Button onClick={handleLogOut} variant="outline-danger" size="sm" className='mx-3' >Log out</Button>
                                     </>
                                     :
